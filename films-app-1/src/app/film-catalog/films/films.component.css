@@ -1,0 +1,39 @@
+.exampleCard {
+  max-width: 78%;
+  min-height: 91%;
+  margin: 1em auto;
+  text-align: center;
+}
+.cardTitle {
+  font-size: 18px;
+  text-align: left;
+}
+.matCardImage {
+  border: 1px solid #000;
+  max-height: 500px;
+  width: 100%;
+}
+
+.myFigure {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+
+  justify-content: center;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+
+  lign-items: top !important;
+}
+.marCardDesc {
+  margin-top: 15px;
+  height: 84px;
+  overflow: hidden;
+}
+.matCardBtn {
+  margin-bottom: 10px;
+}

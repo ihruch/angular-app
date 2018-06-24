@@ -1,0 +1,26 @@
+<mat-grid-list cols="6" rowHeight="1:3">
+
+  <mat-grid-tile colspan="2" *ngFor="let film of filmsData">
+  
+    <div [class.myFigure]="true">
+      <mat-card [class.exampleCard]="true">
+        <mat-card-header>
+          <mat-card-title [class.cardTitle]="true">{{film.name}} ({{film.year}})</mat-card-title>
+        </mat-card-header>
+
+        <img src="{{film.imgUrl}}" alt="Photo of {{film.name}}" [class.matCardImage]="true">
+
+        <mat-card-content [class.marCardDesc]="true">
+          <p>{{film.description}}</p>
+        </mat-card-content>
+
+        <mat-card-actions [class.matCardBtn]="true">
+          <button mat-button>Открыть</button>
+          <button mat-button>Редактировать</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    
+  </mat-grid-tile>
+
+</mat-grid-list>

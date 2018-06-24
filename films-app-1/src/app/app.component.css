@@ -1,0 +1,15 @@
+.example-icon {
+  padding: 0 5px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+.wrapper {
+  /* border: 1px solid red; */
+  margin-top: 30px;
+  padding: 15px 0;
+}
+.mat-grid-tile {
+  margin: 50px 0;
+}
