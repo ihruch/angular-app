@@ -1,4 +1,51 @@
-<mat-toolbar class="menu-toolbar">
+<div class="content-container">
+  <div class="content-area">
+
+    <!-- block sort and search -->
+    <div class="clr-row">
+
+      <div class="panel-sort-serch">
+
+        <div class="panel-favourite">
+          <span>В избранном: {{countStar}} </span>
+        </div>
+
+        <div class="panel-search">
+          <app-film-search (valSearch)='searchFilms($event)'></app-film-search>
+        </div>
+
+        <div class="panel-sorting">
+          <clr-dropdown (click)='sortingHandler($event)'>
+            <button type="button" class="btn btn-outline-primary" clrDropdownTrigger #dropDownSort>
+              SORT BY NAME
+              <clr-icon shape="caret down"></clr-icon>
+            </button>
+            <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+              <button type="button" clrDropdownItem *ngFor="let item of options" [attr.data-sort]="item.value">{{item.name}}</button>
+            </clr-dropdown-menu>
+          </clr-dropdown>
+        </div>
+      </div>
+    </div>
+    <!-- end block sort and search -->
+
+    <div class="clr-row">
+      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let film of filmsData;">
+        <app-film-item [film]="film"></app-film-item>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clr-row">
+  <div class="btn-page">
+    <button class="btn btn-primary btn-next" (click)='showPage()' [disabled]='filmsData.length >= countItem'>Показать еще ...</button>
+  </div>
+</div>
+
+<!-- ********************************************************************************************** -->
+
+<!-- <mat-toolbar class="menu-toolbar">
   <mat-toolbar-row>
     <span>В избранное добавлено: {{countStar}} элементов</span>
     <span class="example-spacer"></span>
@@ -10,8 +57,8 @@
       </mat-form-field>
     </div>
   </mat-toolbar-row>
-</mat-toolbar>
-
+</mat-toolbar> -->
+<!-- 
 <mat-grid-list cols="3" rowHeight="1:1.9">
   <mat-grid-tile *ngFor="let film of filmsData;">
 
@@ -19,4 +66,4 @@
 
   </mat-grid-tile>
   <mat-grid-tile></mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->

@@ -1,5 +1,12 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
 import { FilmService } from '../film.service';
+import { Dropdown } from '@clr/angular';
 
 @Component({
   selector: 'app-films-list',
@@ -8,27 +15,60 @@ import { FilmService } from '../film.service';
 })
 export class FilmsListComponent implements OnInit {
   filmsData: object[];
-  typeSort: string;
+  isBtn: string;
   countStar = 0;
-  isCastomWidth: boolean = true;
+  isCastomWidth = true;
+  countItem: number;
+
+  @ViewChild('dropDownSort') dropdown: ElementRef;
 
   options = [
-    { name: 'По алфавиту: A-Z', value: 'AZ' },
-    { name: 'По алфавиту: Z-A', value: 'ZA' }
+    { name: 'от А до Я', value: 'AZ' },
+    { name: 'от Я до А', value: 'ZA' }
   ];
+
   constructor(public filmService: FilmService) {}
 
   ngOnInit() {
     this.filmsData = this.filmService.getFilmsData();
+    this.countItem = this.filmService.isMax();
   }
 
-  sortingHandler() {
-    console.log(this.filmsData);
-    this.filmService.sortingHandler(this.filmsData, this.typeSort);
+  showPage() {
+    this.filmsData = [...this.filmsData, ...this.filmService.getFilmsData()];
   }
 
-  countFavorite() {
-    console.log('object');
-    return this.countStar++;
+  // СОРТИРОВКА НАЧАЛО
+  sortingHandler(event) {
+    this.isBtn = event.target.getAttribute('data-sort');
+    if (this.isBtn) {
+      this.sortingData(this.isBtn);
+      this.changeItemName(event);
+    }
   }
+
+  sortingData(isBtn) {
+    this.filmService.sortingHandler(this.filmsData, isBtn);
+  }
+
+  changeItemName(event) {
+    this.dropdown.nativeElement.innerHTML = event.target.innerHTML;
+  }
+  // СОРТИРОВКА КОНЕЦ
+
+  // ПОИСК ФИЛЬМОВ
+  searchFilms(str: any) {
+    str.length >= 2 ? this.compareValue(str) : this.updatePage();
+  }
+  compareValue(str) {
+    return (this.filmsData = this.filmsData.filter(item => {
+      return item['name'].toLowerCase().indexOf(str) !== -1;
+    }));
+  }
+  updatePage() {
+    this.filmService.configPage.currentPage = 0;
+    this.filmsData = [];
+    this.showPage();
+  }
+  // КОНЕЦ ПОИСК ФИЛЬМОВ
 }

@@ -9,8 +9,9 @@ import { FilmService } from '../film.service';
 export class FilmsListComponent implements OnInit {
   filmsData: object[];
   typeSort: string;
-  countStar: number = 0;
-  isCastomWidth: true;
+  countStar = 0;
+  isCastomWidth = true;
+
   options = [
     { name: 'По алфавиту: A-Z', value: 'AZ' },
     { name: 'По алфавиту: Z-A', value: 'ZA' }
@@ -22,7 +23,7 @@ export class FilmsListComponent implements OnInit {
   }
 
   sortingHandler() {
-    this.filmService.sortingHandler(this.typeSort);
+    this.filmService.sortingHandler(this.filmsData, this.typeSort);
   }
 
   countFavorite() {

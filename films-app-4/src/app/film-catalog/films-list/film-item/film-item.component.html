@@ -1,4 +1,45 @@
-<mat-card class="film-card">
+<!-- start card -->
+<div class="card">
+	<div class="card-header">
+		<div class="card-media-block">
+			<img src="{{film['imgUrl']}}" class="card-media-image icon">
+			<div class="card-media-description">
+				<span class="card-media-title">
+					{{film['name']}}
+				</span>
+				<span class="card-media-text">
+					{{film['year']}}
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="card-img">
+		<img src="{{film['imgUrl']}}" alt="{{film['name']}}" title="{{film['name']}}">
+	</div>
+	<div class="card-block">
+
+		<div class="card-text">
+			{{film['description']}}
+		</div>
+	</div>
+	<div class="card-footer">
+		<!-- <button class="btn btn-sm btn-link" (click)='addFavorites()'>Add</button> -->
+		<button type="button" class="btn btn-icon">
+			<clr-icon shape="play"></clr-icon>
+		</button>
+		<button type="button" class="btn btn-icon">
+			<clr-icon shape="justify-text"></clr-icon>
+		</button>
+		<button type="button" class="btn btn-icon">
+			<clr-icon shape="star"></clr-icon>
+		</button>
+	</div>
+</div>
+<!-- end card -->
+
+
+
+<!-- <mat-card class="film-card">
 	<mat-card-header>
 		<mat-card-title>{{film['name']}}</mat-card-title>
 	</mat-card-header>
@@ -16,4 +57,4 @@
 			<i class="material-icons">star_border</i>
 		</button>
 	</mat-card-actions>
-</mat-card>
+</mat-card> -->

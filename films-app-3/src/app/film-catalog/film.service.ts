@@ -72,15 +72,15 @@ export class FilmService {
     return this.filmsList;
   }
 
-  sortingHandler(typeSort) {
+  sortingHandler(arr, typeSort) {
     switch (typeSort) {
       case 'AZ':
-        return this.filmsList.sort(
+        return arr.sort(
           (a, b) => (a['name'].toLowerCase() > b['name'].toLowerCase() ? 1 : -1)
         );
 
       case 'ZA':
-        return this.filmsList.sort(
+        return arr.sort(
           (a, b) => (a['name'].toLowerCase() < b['name'].toLowerCase() ? 1 : -1)
         );
     }

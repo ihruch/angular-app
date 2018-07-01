@@ -1,4 +1,25 @@
-<mat-toolbar color='primary'>
+<div class="main-container">
+  <header class="header header-6">
+
+    <div class="branding">
+      <a href="#" class="nav-link">
+        <span class="title">Film Catalog</span>
+      </a>
+    </div>
+    <div class="header-nav">
+      <a *ngFor="let link of links" class="nav-link nav-text" [routerLink]='link.path' [routerLinkActive]='link.active'>
+        {{link.label}}
+      </a>
+    </div>
+  </header>
+
+  <router-outlet></router-outlet>
+  
+</div>
+
+
+
+<!-- <mat-toolbar color='primary'>
   <mat-toolbar-row>
     <span>Film Catalog</span>
     <span class="example-spacer"></span>
@@ -6,7 +27,4 @@
       <mat-icon class="example-icon">{{ link.icon }}</mat-icon>{{ link.label }}
     </a>
   </mat-toolbar-row>
-</mat-toolbar>
-
-
-<router-outlet></router-outlet>
+</mat-toolbar> -->

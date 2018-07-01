@@ -1,7 +1,12 @@
-.example-icon {
-    padding: 0 5px;
-  }
-  
-.example-spacer {
-    flex: 1 1 auto;
+header {
+  display: flex;
+  justify-content: space-between;
+}
+.header-nav a {
+  font-size: 16px;
+  color: #fff;
+}
+
+.main-container {
+  width: 100vw;
 }

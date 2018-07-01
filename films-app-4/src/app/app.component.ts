@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
 
 const links: object[] = [
-  { path: '/main', label: 'Главная', active: 'button-active', icon: 'home' },
+  {
+    path: '/main',
+    label: 'Главная',
+    active: 'active',
+    icon: 'home'
+  },
   {
     path: '/films',
     label: 'Все фильмы',
-    active: 'button-active',
-    icon: 'list_alt'
+    active: 'no-active',
+    icon: 'view-list'
   }
 ];
 
