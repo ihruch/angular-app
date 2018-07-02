@@ -1,0 +1,13 @@
+<form>
+  <section class="form-block">
+
+    <div class="form-group " [class.form-search-group]='true'>
+      <input type="text" placeholder="Ввудите название" size="55" (keyup.enter)='saerchHandler($event.target.value)'>
+
+      <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-lg tooltip-bottom-left">
+        <clr-icon shape="info-circle" size="24"></clr-icon>
+        <span class="tooltip-content">Для поиска фильма введите более 3-х символов</span>
+      </a>
+    </div>
+  </section>
+</form>

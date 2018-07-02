@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { FilmService } from '../film.service';
 import { Dropdown } from '@clr/angular';
+import { elementStart } from '@angular/core/src/render3/instructions';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-films-list',
@@ -19,6 +21,9 @@ export class FilmsListComponent implements OnInit {
   countStar = 0;
   isCastomWidth = true;
   countItem: number;
+  isHidden = false;
+  isEmptysearch = false;
+  countFavourite: object[];
 
   @ViewChild('dropDownSort') dropdown: ElementRef;
 
@@ -32,6 +37,17 @@ export class FilmsListComponent implements OnInit {
   ngOnInit() {
     this.filmsData = this.filmService.getFilmsData();
     this.countItem = this.filmService.isMax();
+    this.countItemFavourite();
+  }
+  // при начальной инициализации смотрим есть ли фильмы в избранном
+  countItemFavourite() {
+    this.countFavourite = this.filmService.getFavourite();
+  }
+
+  // от дочернего компонента приходит объект фильм его буре его id  и отправляем в сервис
+  updateFavourite(film) {
+    this.filmService.changeFavourite(film.id);
+    this.countItemFavourite();
   }
 
   showPage() {
@@ -46,29 +62,36 @@ export class FilmsListComponent implements OnInit {
       this.changeItemName(event);
     }
   }
-
   sortingData(isBtn) {
-    this.filmService.sortingHandler(this.filmsData, isBtn);
+    this.filmService.sortingHandler(isBtn);
+    this.resetPage();
   }
-
   changeItemName(event) {
     this.dropdown.nativeElement.innerHTML = event.target.innerHTML;
   }
   // СОРТИРОВКА КОНЕЦ
 
   // ПОИСК ФИЛЬМОВ
-  searchFilms(str: any) {
-    str.length >= 2 ? this.compareValue(str) : this.updatePage();
+  searchFilms(searchVal: string) {
+    if (searchVal.length >= 3) {
+      this.isHidden = true;
+      this.filmsData = this.filmService.filmsList.filter(item => {
+        return (
+          item['name'].toLowerCase().indexOf(searchVal.toLowerCase()) !== -1
+        );
+      });
+      console.log(this.filmsData);
+    } else {
+      this.resetPage();
+    }
   }
-  compareValue(str) {
-    return (this.filmsData = this.filmsData.filter(item => {
-      return item['name'].toLowerCase().indexOf(str) !== -1;
-    }));
-  }
-  updatePage() {
+
+  // КОНЕЦ ПОИСК ФИЛЬМОВ
+
+  resetPage() {
     this.filmService.configPage.currentPage = 0;
     this.filmsData = [];
     this.showPage();
+    this.isHidden = false;
   }
-  // КОНЕЦ ПОИСК ФИЛЬМОВ
 }

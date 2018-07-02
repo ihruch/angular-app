@@ -7,11 +7,14 @@
       <div class="panel-sort-serch">
 
         <div class="panel-favourite">
-          <span>В избранном: {{countStar}} </span>
+          <span>В избранном: {{countFavourite.length}} </span>
         </div>
 
         <div class="panel-search">
           <app-film-search (valSearch)='searchFilms($event)'></app-film-search>
+          <div *ngIf='!this.filmsData.length' [ngClass]="{ 'msg-align': true }">
+            ФИЛЬМОВ ПО ВАШЕМУ ЗАПРОСУ НЕ НАЙДЕННО.
+          </div>
         </div>
 
         <div class="panel-sorting">
@@ -30,8 +33,8 @@
     <!-- end block sort and search -->
 
     <div class="clr-row">
-      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let film of filmsData;">
-        <app-film-item [film]="film"></app-film-item>
+      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let film of filmsData; index as index">
+        <app-film-item [film]="film" (addfavorite)='updateFavourite(film)'></app-film-item>
       </div>
     </div>
   </div>
@@ -39,31 +42,6 @@
 
 <div class="clr-row">
   <div class="btn-page">
-    <button class="btn btn-primary btn-next" (click)='showPage()' [disabled]='filmsData.length >= countItem'>Показать еще ...</button>
+    <button class="btn btn-primary btn-next" (click)='showPage()' [hidden]='isHidden' [disabled]='filmsData.length >= countItem'>Показать еще ...</button>
   </div>
 </div>
-
-<!-- ********************************************************************************************** -->
-
-<!-- <mat-toolbar class="menu-toolbar">
-  <mat-toolbar-row>
-    <span>В избранное добавлено: {{countStar}} элементов</span>
-    <span class="example-spacer"></span>
-    <div>
-      <mat-form-field>
-        <mat-select placeholder="Сортировка" [(ngModel)]='typeSort' (selectionChange)='sortingHandler()'>
-          <mat-option *ngFor="let item of options" value="{{item.value}}"> {{item.name}} </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </mat-toolbar-row>
-</mat-toolbar> -->
-<!-- 
-<mat-grid-list cols="3" rowHeight="1:1.9">
-  <mat-grid-tile *ngFor="let film of filmsData;">
-
-    <app-film-item [film]="film" (addfavorite)='countFavorite()'></app-film-item>
-
-  </mat-grid-tile>
-  <mat-grid-tile></mat-grid-tile>
-</mat-grid-list> -->

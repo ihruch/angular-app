@@ -12,7 +12,7 @@ export class FilmItemComponent implements OnInit {
 
   ngOnInit() {}
 
-  addFavorites() {
-    this.addfavorite.emit();
+  addFilmToFavourite(film) {
+    this.addfavorite.emit(film);
   }
 }
