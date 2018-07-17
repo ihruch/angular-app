@@ -38,8 +38,6 @@ export class FilmsListComponent implements OnInit {
     totalResults: null,
     lastPage: null
   };
- 
-
 
   sortOptions: SortOption[] = [
     { value: 'films', description: 'Фильмы' },
@@ -50,8 +48,8 @@ export class FilmsListComponent implements OnInit {
   @ViewChild(SearchComponent) searchComp: SearchComponent;
 
   // сохранение данных полученных с сервера
-  saveData(itemsAll, currentPage, totalPages, totalRes) {
-    this.items = itemsAll;
+  saveData(items, currentPage, totalPages, totalRes) {
+    this.items = this.items.concat(items);
     this.configPage.currentPage = currentPage;
     this.configPage.totalPages = totalPages;
     this.configPage.totalResults = totalRes;
@@ -59,7 +57,7 @@ export class FilmsListComponent implements OnInit {
 
   ngOnInit() {
     this.getPopularFilms();
-  } // END ngOnInit
+  } 
 
   // ПОЛУЧЕНИЕ ДАННЫХ С СЕРВИСА
   getPopularFilms() {
