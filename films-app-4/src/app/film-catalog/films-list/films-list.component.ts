@@ -5,6 +5,7 @@ import {
   ViewChild,
   ElementRef
 } from '@angular/core';
+
 import { FilmService } from '../film.service';
 import { Dropdown } from '@clr/angular';
 import { elementStart } from '@angular/core/src/render3/instructions';

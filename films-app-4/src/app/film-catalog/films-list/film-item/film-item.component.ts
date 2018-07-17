@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class FilmItemComponent implements OnInit {
   constructor() {}
-  @Input() film: any;
+  @Input() film: object[];
   @Output() addfavorite = new EventEmitter();
 
   ngOnInit() {}
