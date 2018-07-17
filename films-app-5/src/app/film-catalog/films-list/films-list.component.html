@@ -1,0 +1,56 @@
+<mat-card class="menu-card">
+  <mat-toolbar class="menu-toolbar">
+    <mat-toolbar-row [ngClass]="{'aling-row': isTrue}">
+      <div>
+        <span>Избранное: {{favoriteFilmsCount}} элементов</span> &nbsp;
+        <span class="example-spacer"></span>
+      </div>
+
+      <div>
+        <app-search [activeView]='activeView' (search)='searchHandler($event)'> </app-search>
+
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-select [(ngModel)]="activeView" (selectionChange)="changeView()">
+            <mat-option *ngFor="let option of sortOptions" [value]="option.value">
+              {{option.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</mat-card>
+
+<div class='spinner-block' *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+
+
+<div class="class-grid">
+  <ng-container *ngFor="let item of items; trackBy: trackByFn">
+    <app-film-item *ngIf='activeView === "films"' [film]='item' [imgPath]='imgPath' ></app-film-item>
+    <app-person-item *ngIf='activeView === "characters"' [character]='item' [imgPath]='imgPath'> </app-person-item>
+  </ng-container>
+</div>
+
+
+<div class="footer-container">
+  <div class="info-page-footer">
+    <span>Страницы {{configPage.currentPage}} из {{configPage.totalPages}}</span>
+    <br>
+    <span>Всего результатов: {{configPage.totalResults}}</span>
+  </div>
+  <div class="btn-action-footer">
+    <button mat-stroked-button color="primary" [disabled]='configPage.currentPage == 1' (click)='moveToFirstPage()'>Первая стр</button>
+    <button mat-stroked-button color="primary" [disabled]="isLastPage()" (click)='loadNextPage()'>Загрузить еще</button>
+    <button mat-stroked-button color="primary" [disabled]='isLastPage()' (click)='moveToLastPage()'>Последняя стр</button>
+  </div>
+  <div class="info-page-footer">
+
+  </div>
+
+
+</div>

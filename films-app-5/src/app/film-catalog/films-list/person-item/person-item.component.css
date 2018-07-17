@@ -1,0 +1,11 @@
+.popular {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.popular i {
+  margin: 0 10px;
+  color: gold;
+}
+
+

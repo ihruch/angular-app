@@ -1,0 +1,44 @@
+<mat-card class="film-card">
+  <img mat-card-image src="{{imgPath + character.profile_path}}" alt="{{character.name}}" >
+
+  <mat-card-content>
+    <mat-card-title>{{character.name}}</mat-card-title>
+    <div class='popular' color="gold">
+      <i class="material-icons">star</i> {{character.popularity}}
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-icon-button color="black">
+      <i class="material-icons">
+        description
+      </i>
+    </button>
+    <button mat-icon-button color="black">
+      <i class="material-icons">
+        edit
+      </i>
+    </button>
+  </mat-card-actions>
+
+</mat-card>
+
+<!-- <mat-card class="person-card">
+  <div class="poster">
+    <img *ngIf="person.profile_path; else noImage" mat-card-image src="{{imgPath+person.profile_path}}" alt="{{[person].title}}"
+      title="{{person.title}}">
+    <ng-template #noImage>
+      <i class="material-icons noImage">person</i>
+    </ng-template>
+  </div>
+  <mat-card-header>
+    <mat-card-title>{{person.name}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <i class="material-icons">star</i> {{person.popularity}}
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Открыть</button>
+    <button mat-button>Редактировать</button>
+  </mat-card-actions>
+</mat-card> -->

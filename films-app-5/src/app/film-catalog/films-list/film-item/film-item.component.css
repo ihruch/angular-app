@@ -1,0 +1,40 @@
+:host {
+  width: 395px;
+  /* min-width: 395px; */
+}
+
+.film-header-image {
+  background-image: url('../../../../assets/1.png');
+  background-size: cover;
+}
+.film-card {
+  height: 85%;
+  padding-bottom: 7px;
+  /* padding: 0 24px; */
+  /* height: 100%;
+  max-width: 80%;
+  margin: 1em auto;
+  text-align: center; */
+}
+.film-card .mat-card-image {
+  height: 75%;
+}
+.film-card .mat-card-content {
+  max-height: 115px;
+  overflow: hidden;
+  height: 109px;
+  display: block;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.mat-card-header {
+  text-align: left;
+}
+.grey-color {
+  color: #ddd;
+  font-size: 14px;
+}
+.mat-card-title {
+  font-weight: bold;
+}
